@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora Atual</title>
+    <style>
+        body{
+            background-color: rgb(17, 34, 48);
+            color: white;
+            font: normal 20pt Arial;
+        }
+        h1{
+            color: rgb(234, 255, 159);/*Comentario CSS*/
+        }
+        h2{
+            color: rgb(255, 241, 110);/*Comentario CSS*/
+        }
+        strong{
+            font-weight: bolder;
+        }
+        table,tr,th,td{
+            padding: 10px;
+            border: 1px solid black;
+        }
+        div{
+            margin-top: 30px;
+        }
+        input{
+            font:normal 15pt 'Arial';
+            width: 75px;
+            height: 25px;  
+            background: black;
+            color: red; 
+            text-align: center;         
+            
+        }
+        div#corpo{
+            background-color: rgb(3, 71, 73);
+            padding: 20px;
+            border: 15px solid;
+            text-align: center;
+        }
+    </style>
+</head>
+<body onload="relogio()">
+    <div id = corpo>
+    <h1>Hora atual</h1>
+    <form name="form_relogio">
+        <input type="text" name = "relogio">
+    </form>
+    <div id="dia">Resultado</div>
+
+    </div>
+    <script>
+        
+        function relogio(){
+            var res = document.querySelector("div#dia")
+            var date = new Date()
+            var hora = date.getHours()
+            var min = date.getMinutes()
+            var sec = date.getSeconds()
+            var horaImprimivel = `${hora}:${min}:${sec}`
+            var fundo = document.querySelector("div#corpo")
+            
+
+            if(hora>=0 && hora<6){
+                res.innerHTML = "<p>Boa Madrugada!</p>"
+                fundo.style.background = "#311828"
+            }else if(hora>=6 && hora<12){
+                res.innerHTML = "<p>Bom Dia!</p>"
+                fundo.style.background = "#c8db76"
+            }else if(hora<=18){
+                res.innerHTML = "<p>Boa Tarde!</p>"
+                fundo.style.background = "#d87a04"
+            }else{
+                res.innerHTML = "<p>Boa Noite!</p>"
+                fundo.style.background = "#0b1966"
+            }
+
+            document.form_relogio.relogio.value = horaImprimivel
+            setTimeout("relogio()",1000)
+        }
+
+    </script>
+</body>
+</html>
